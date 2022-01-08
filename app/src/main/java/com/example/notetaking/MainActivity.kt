@@ -3,7 +3,6 @@ package com.example.notetaking
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notetaking.adapter.NotesAdapter
@@ -21,25 +20,32 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // getting data for recycler view
         val notes = DataSource.dataSource
-
+        // initializing recycler view
         val notesRV = binding.notesRecyclerView
+        // setting recyclerView adapter
         notesAdapter = NotesAdapter(this, notes)
         notesRV.adapter = notesAdapter
-
+        // setting layout manager for the recycler view
         notesRV.layoutManager = LinearLayoutManager(this)
 
-
+        // setting on click listener to add note
         binding.addBtn.setOnClickListener{
             Intent(this, AddEditActivity::class.java).also {
                 startActivity(it)
             }
         }
+        // setting on click listener to edit note
         notesAdapter.setOnItemClickListener(object: NotesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
                     Intent(this@MainActivity, AddEditActivity::class.java).also {
                         startActivity(it)
 
+                        val extra = intent.extras
+                        if (extra != null) {
+                            val x = intent?.extras?.getString("noteTitle")
+                        }
                     }
                 }
             })

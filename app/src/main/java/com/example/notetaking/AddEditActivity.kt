@@ -1,9 +1,7 @@
 package com.example.notetaking
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import com.example.notetaking.dataSource.DataSource
 import com.example.notetaking.databinding.ActivityAddEditBinding
 import com.example.notetaking.model.Note
@@ -13,7 +11,6 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 class AddEditActivity: AppCompatActivity() {
     private lateinit var binding: ActivityAddEditBinding
 
-    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddEditBinding.inflate(layoutInflater)
@@ -23,11 +20,12 @@ class AddEditActivity: AppCompatActivity() {
         val notes = DataSource.dataSource
         val doneBtn: FloatingActionButton = binding.doneBtn
         doneBtn.setOnClickListener{
-            val title = binding.titleEdtTxt.text.toString()
-            val note = binding.noteEdtTxt.text.toString()
-            notes.add(0, Note(title, note))
+            val noteTitle = binding.titleEdtTxt.text.toString()
+            val noteText = binding.noteEdtTxt.text.toString()
+            notes.add(0, Note(noteTitle, noteText))
+            intent.putExtra("noteTitle", binding.titleEdtTxt.text.toString())
+            intent.putExtra("noteText", noteText)
             notesAdapter.notifyDataSetChanged()
-
             finish()
         }
     }
