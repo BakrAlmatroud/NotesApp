@@ -23,8 +23,6 @@ class AddEditActivity: AppCompatActivity() {
             val noteTitle = binding.titleEdtTxt.text.toString()
             val noteText = binding.noteEdtTxt.text.toString()
             notes.add(0, Note(noteTitle, noteText))
-            intent.putExtra("noteTitle", binding.titleEdtTxt.text.toString())
-            intent.putExtra("noteText", noteText)
             notesAdapter.notifyDataSetChanged()
             finish()
         }

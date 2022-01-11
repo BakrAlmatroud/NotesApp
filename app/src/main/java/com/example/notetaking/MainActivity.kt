@@ -36,18 +36,18 @@ class MainActivity : AppCompatActivity() {
                 startActivity(it)
             }
         }
+
         // setting on click listener to edit note
         notesAdapter.setOnItemClickListener(object: NotesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
-                    Intent(this@MainActivity, AddEditActivity::class.java).also {
-                        startActivity(it)
+                val currentNote = notes[position]
+                Intent(this@MainActivity, AddEditActivity::class.java).also {
+                    startActivity(it)
+                    intent.putExtra("noteTitle", currentNote.title)
+                    intent.putExtra("noteText", currentNote.note)
 
-                        val extra = intent.extras
-                        if (extra != null) {
-                            val x = intent?.extras?.getString("noteTitle")
-                        }
-                    }
                 }
-            })
+            }
+        })
     }
 }
