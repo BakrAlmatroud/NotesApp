@@ -18,8 +18,8 @@ class AddEditActivity: AppCompatActivity() {
 
 
         val notes = DataSource.dataSource
-        val doneBtn: FloatingActionButton = binding.doneBtn
-        doneBtn.setOnClickListener{
+
+        binding.doneBtn.setOnClickListener{
             val noteTitle = binding.titleEdtTxt.text.toString()
             val noteText = binding.noteEdtTxt.text.toString()
             notes.add(0, Note(noteTitle, noteText))

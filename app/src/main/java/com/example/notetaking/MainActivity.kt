@@ -41,11 +41,10 @@ class MainActivity : AppCompatActivity() {
         notesAdapter.setOnItemClickListener(object: NotesAdapter.OnItemClickListener{
             override fun onItemClick(position: Int) {
                 val currentNote = notes[position]
-                Intent(this@MainActivity, AddEditActivity::class.java).also {
+                Intent(this@MainActivity, EditActivity::class.java).also {
+                    it.putExtra("noteTitle", currentNote.title)
+                    it.putExtra("noteText", currentNote.note)
                     startActivity(it)
-                    intent.putExtra("noteTitle", currentNote.title)
-                    intent.putExtra("noteText", currentNote.note)
-
                 }
             }
         })
