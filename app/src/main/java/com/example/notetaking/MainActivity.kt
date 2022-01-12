@@ -3,6 +3,7 @@ package com.example.notetaking
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notetaking.adapter.NotesAdapter

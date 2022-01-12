@@ -3,7 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
         android:padding="8dp">
     <EditText
             android:layout_width="match_parent"
@@ -18,18 +18,17 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"/>
 
     <EditText
+            android:id="@+id/note_edt_txt"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/note_edt_txt"
             android:layout_below="@+id/title_edt_txt"
+            android:gravity="start"
             style="@style/Widget.MaterialComponents.Button.TextButton"
             android:textColor="@color/black"
             android:hint="@string/enter_a_text"
-            android:gravity="start"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
             android:autofillHints="no"
-            android:inputType="textMultiLine"
-            android:layout_marginTop="8dp"/>
+            android:inputType="textMultiLine" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
