@@ -3,12 +3,12 @@ package com.example.notetaking
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notetaking.dataSource.DataSource
+import com.example.notetaking.dataSource.DataSource.dataSource
 import com.example.notetaking.databinding.ActivityAddEditBinding
 import com.example.notetaking.model.Note
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-class AddEditActivity: AppCompatActivity() {
+class AddActivity: AppCompatActivity() {
     private lateinit var binding: ActivityAddEditBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,13 +17,13 @@ class AddEditActivity: AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val notes = DataSource.dataSource
+        val notes = dataSource
 
         binding.doneBtn.setOnClickListener{
             val noteTitle = binding.titleEdtTxt.text.toString()
             val noteText = binding.noteEdtTxt.text.toString()
-            notes.add(0, Note(noteTitle, noteText))
-            notesAdapter.notifyItemChanged(0)
+            notes.add(notes.size, Note(noteTitle, noteText))
+            notesAdapter.notifyItemChanged(notes.size)
             finish()
         }
     }

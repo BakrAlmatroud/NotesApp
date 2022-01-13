@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.notetaking.dataSource.DataSource
+import com.example.notetaking.dataSource.DataSource.dataSource
 import com.example.notetaking.databinding.ActivityAddEditBinding
 
 private lateinit var binding: ActivityAddEditBinding
@@ -16,7 +17,7 @@ class EditActivity: AppCompatActivity() {
         binding = ActivityAddEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val notes = DataSource.dataSource
+        val notes = dataSource
 
         val noteTitle = intent.getStringExtra("noteTitle")
         val noteText = intent.getStringExtra("noteText")
@@ -26,10 +27,11 @@ class EditActivity: AppCompatActivity() {
         }
 
         binding.doneBtn.setOnClickListener{
-            val currentNote = notes[0]
+            val position = intent.getIntExtra("position", 0)
+            val currentNote = notes[position]
             currentNote.title = binding.titleEdtTxt.text.toString()
             currentNote.note = binding.noteEdtTxt.text.toString()
-            notesAdapter.notifyItemChanged(0)
+            notesAdapter.notifyItemChanged(position)
             finish()
         }
 
