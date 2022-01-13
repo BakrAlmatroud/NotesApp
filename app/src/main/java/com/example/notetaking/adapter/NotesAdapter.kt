@@ -28,6 +28,7 @@ class NotesAdapter(
 
     class NotesViewHolder(itemView: View, listener: OnItemClickListener): RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.note_title)
+        val note: TextView = itemView.findViewById(R.id.note_text)
         val deleteBtn: ImageButton = itemView.findViewById(R.id.delete_btn)
 
         init {
@@ -49,6 +50,7 @@ class NotesAdapter(
         val item = data[position]
 
         holder.title.text = item.title
+        holder.note.text = item.note.take(25)
         holder.deleteBtn.setOnClickListener {
             data.removeAt(holder.adapterPosition)
             notifyItemRemoved(holder.adapterPosition)

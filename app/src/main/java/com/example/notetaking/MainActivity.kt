@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notetaking.adapter.NotesAdapter
 import com.example.notetaking.dataSource.DataSource
@@ -25,6 +26,9 @@ class MainActivity : AppCompatActivity() {
         notesAdapter = NotesAdapter(this, notes)
         notesRV.adapter = notesAdapter
         notesRV.layoutManager = LinearLayoutManager(this)
+        
+        notesRV.addItemDecoration(DividerItemDecoration(this@MainActivity, LinearLayoutManager.VERTICAL))
+
 
         binding.addBtn.setOnClickListener{
             Intent(this, AddActivity::class.java).also {
